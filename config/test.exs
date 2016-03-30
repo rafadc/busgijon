@@ -8,12 +8,3 @@ config :busgijon, Busgijon.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
-
-# Configure your database
-config :busgijon, Busgijon.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "busgijon_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
