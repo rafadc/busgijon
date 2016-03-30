@@ -1,4 +1,5 @@
 # Bus Gijón #
+![](https://travis-ci.org/rafadc/busgijon.svg)
 
 A Phoenix page showing the current position of the buses in Gijón.
 
