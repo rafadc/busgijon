@@ -3,7 +3,7 @@ defmodule Busgijon.Mixfile do
 
   def project do
     [app: :busgijon,
-     version: "0.0.1",
+     version: "0.0." <> System.get_env("BUILDS_ALL_TIME"),
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -38,7 +38,8 @@ defmodule Busgijon.Mixfile do
      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.2"},
      {:httpotion, "~> 2.1.0"},
      {:poison, "~> 2.0"},
-     {:junit_formatter, "~> 1.0"}]
+     {:junit_formatter, "~> 1.0", only: :dev},
+     {:exrm, "~> 1.0.3"}]
   end
 
   defp aliases do
