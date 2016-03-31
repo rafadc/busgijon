@@ -38,7 +38,7 @@ defmodule Busgijon.Mixfile do
      {:ibrowse, github: "cmullaparthi/ibrowse", tag: "v4.2"},
      {:httpotion, "~> 2.1.0"},
      {:poison, "~> 2.0"},
-     {:junit_formatter, "~> 1.0", only: :dev},
+     {:junit_formatter, "~> 1.0", only: :test},
      {:exrm, "~> 1.0.3"}]
   end
 
