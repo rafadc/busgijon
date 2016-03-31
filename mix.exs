@@ -3,7 +3,7 @@ defmodule Busgijon.Mixfile do
 
   def project do
     [app: :busgijon,
-     version: "0.0." <> System.get_env("BUILDS_ALL_TIME"),
+     version: version,
      elixir: "~> 1.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
@@ -44,5 +44,14 @@ defmodule Busgijon.Mixfile do
 
   defp aliases do
     []
+  end
+
+  defp version do
+    case System.get_env("BUILDS_ALL_TIME") do
+      nil ->
+        "0.0.1"
+      minor ->
+        "0.0.#{minor}"
+    end
   end
 end
