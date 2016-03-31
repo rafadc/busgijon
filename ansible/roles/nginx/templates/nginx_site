@@ -1,0 +1,25 @@
+http {
+  upstream phoenix_upstream {
+    server 127.0.0.1:4001;
+  }
+
+  server {
+    listen 80;
+    server_name  www.{{ domain_name }};
+    rewrite ^/(.*) http://{{ domain_name }} permanent;
+  }
+
+
+  server {
+    listen 80;
+    location / {
+      proxy_redirect off;
+      proxy_pass http://phoenix_upstream;
+    }
+  }
+
+  server_name {{ domain_name }};
+  access_log /var/log/nginx/{{ domain_name }}_access.log;
+  error_log /var/log/nginx/{{ domain_name }}_error.log;
+
+}

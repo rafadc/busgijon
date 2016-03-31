@@ -1,0 +1,17 @@
+---
+- name: Install basic dependencies
+  apt: name={{item}} update_cache=yes
+  with_items:
+  - nginx
+
+- name: Add nginx site configuration
+  template: src=nginx_site dest=/etc/nginx/sites-available/busgijon.cyg.us owner=root group=root mode=0644
+  notify: restart nginx
+
+- name: Enable nginx site
+  file: src=/etc/nginx/sites-available/busgijon.cyg.us dest=/etc/nginx/sites-enabled/busgijon.cyg.us state=link
+  notify: restart nginx
+
+- name: Add nginx user to the application group to be able to own the socket too
+  user: name=www-data groups=busgijon append=yes
+  notify: restart nginx

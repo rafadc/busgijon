@@ -1,0 +1,31 @@
+---
+- name: Create application's group
+  remote_user: deploy
+  group: name=busgijon
+
+- name: Create application's user
+  remote_user: deploy
+  user: name=busgijon group=busgijon groups="sudo" shell=/bin/bash generate_ssh_key=yes ssh_key_file=.ssh/id_rsa
+
+- name: Authorize users to log as busgijon
+  remote_user: deploy
+  authorized_key: user=busgijon key="{{ item }}" state=present
+  with_file:
+    - public_keys/jenkins
+    - public_keys/rafadc
+
+- name: Authorize users to log as deploy
+  remote_user: deploy
+  authorized_key: user=busgijon key="{{ item }}" state=present
+  with_file:
+    - public_keys/jenkins
+    - public_keys/rafadc
+
+- name: Install basic dependencies
+  apt: name={{item}} update_cache=yes
+  with_items:
+  - sudo
+  - build-essential
+
+- name: Make the user sudoer with no password
+  lineinfile: "dest=/etc/sudoers state=present regexp='^busgijon' line='%busgijon ALL=(ALL) NOPASSWD: ALL'"

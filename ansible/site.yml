@@ -1,0 +1,12 @@
+---
+- name: Install Bus gijon
+  user: busgijon
+  become: True
+  become_user: root
+  gather_facts: False
+  hosts: all
+
+  roles:
+    - common
+    - nginx
+    - elixir
