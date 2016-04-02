@@ -47,11 +47,6 @@ defmodule Busgijon.Mixfile do
   end
 
   defp version do
-    case System.get_env("VERSION") do
-      nil ->
-        "0.0.1"
-      minor ->
-        "0.0.#{minor}"
-    end
+    "0.0.1"
   end
 end
