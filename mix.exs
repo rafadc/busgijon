@@ -47,7 +47,7 @@ defmodule Busgijon.Mixfile do
   end
 
   defp version do
-    case System.get_env("BUILDS_ALL_TIME") do
+    case System.get_env("VERSION") do
       nil ->
         "0.0.1"
       minor ->
